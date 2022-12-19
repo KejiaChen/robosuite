@@ -108,6 +108,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--environment", type=str, default="Lift")
     parser.add_argument("--robots", nargs="+", type=str, default="Panda", help="Which robot(s) to use in the env")
+    parser.add_argument("--robot_init_qpos", nargs="+", type=list, default=[ 0. , 0.19634954,  0. , -2.61799388,  0., 2.94159265, 0.78539816], help="initial q_pos of robot(s)")
     parser.add_argument(
         "--config", type=str, default="single-arm-opposed", help="Specified environment configuration if necessary"
     )
@@ -136,6 +137,7 @@ if __name__ == "__main__":
     config = {
         "env_name": args.environment,
         "robots": args.robots,
+        "initial_qpos": np.array(args.robot_init_qpos),
         "controller_configs": controller_config,
     }
 

@@ -122,6 +122,7 @@ class RobotEnv(MujocoEnv):
         env_configuration="default",
         mount_types="default",
         controller_configs=None,
+        initial_qpos = None,
         initialization_noise=None,
         use_camera_obs=True,
         has_renderer=False,
@@ -197,11 +198,13 @@ class RobotEnv(MujocoEnv):
         # Robot configurations -- update from subclass configs
         if robot_configs is None:
             robot_configs = [{} for _ in range(self.num_robots)]
+        print("test initial q_pos", initial_qpos)
         self.robot_configs = [
             dict(
                 **{
                     "controller_config": controller_configs[idx],
                     "mount_type": mount_types[idx],
+                    "initial_qpos": initial_qpos,
                     "initialization_noise": initialization_noise[idx],
                     "control_freq": control_freq,
                 },
